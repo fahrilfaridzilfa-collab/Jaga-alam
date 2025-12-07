@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jaga Lingkungan</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: #e8f5e9;
+        color: #2e7d32;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      h1 {
+        margin-top: 30px;
+        font-size: 2.5em;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 10px #81c784;
+        }
+        to {
+          text-shadow: 0 0 30px #388e3c;
+        }
+      }
+
+      .slide {
+        display: none;
+        max-width: 800px;
+        margin: auto;
+        padding: 40px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        animation: fade 0.5s ease;
+      }
+
+      .slide.active {
+        display: block;
+      }
+
+      ul {
+        text-align: left;
+        margin-top: 20px;
+      }
+
+      .nav {
+        margin: 30px;
+      }
+
+      .nav button {
+        padding: 10px 20px;
+        margin: 0 10px;
+        font-size: 1em;
+        background-color: #388e3c;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .nav button:hover {
+        background-color: #2e7d32;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .river {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 120px;
+        background: linear-gradient(to right, #64b5f6, #90caf9);
+        animation: flow 4s linear infinite;
+        z-index: 0;
+      }
+
+      @keyframes flow {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 100% 0;
+        }
+      }
+
+      .fish {
+        position: fixed;
+        bottom: 40px;
+        left: -100px;
+        font-size: 40px;
+        animation: swim 8s linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes swim {
+        0% {
+          left: -100px;
+          transform: scaleX(1);
+        }
+        50% {
+          left: 80vw;
+          transform: scaleX(1);
+        }
+        51% {
+          transform: scaleX(-1);
+        }
+        100% {
+          left: -100px;
+          transform: scaleX(-1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Jaga Lingkungan Kita 🌱</h1>
+
+    <div class="slide active">
+      <h2>Kenapa Kita Harus Menjaga Lingkungan?</h2>
+      <ul>
+        <li>Bumi adalah rumah kita bersama</li>
+        <li>Lingkungan yang sehat = hidup yang sehat</li>
+        <li>Anak-anak punya peran penting menjaga alam</li>
+      </ul>
+    </div>
+
+    <div class="slide">
+      <h2>Cara Menjaga Lingkungan</h2>
+      <ul>
+        <li>🌳 Menanam pohon</li>
+        <li>♻️ Daur ulang sampah</li>
+        <li>🚯 Tidak membuang sampah sembarangan</li>
+        <li>💧 Menghemat air</li>
+        <li>🔌 Menghemat listrik</li>
+      </ul>
+    </div>
+
+    <div class="slide">
+      <h2>Hewan & Tumbuhan Butuh Kita</h2>
+      <ul>
+        <li>🐛 Ulat bisa jadi 🦋 kupu-kupu yang indah</li>
+        <li>🐸 Kodok menjaga keseimbangan ekosistem</li>
+        <li>🦊 Hewan liar butuh ruang untuk hidup</li>
+        <li>🌸 Tumbuhan menghasilkan oksigen</li>
+      </ul>
+    </div>
+
+    <div class="slide">
+      <h2>Contoh Interaktif</h2>
+      <ul>
+        <li>🌳 Klik “Tanam Pohon” → pohon muncul</li>
+        <li>🐛 Klik ulat → jadi 🦋 kupu-kupu</li>
+        <li>🐸 Klik kodok → dia melompat</li>
+        <li>🦊 Klik rubah → dia berlari</li>
+      </ul>
+      <p><em>Setiap aksi kecil bisa membawa perubahan besar</em></p>
+    </div>
+
+    <div class="slide">
+      <h2>Pesan Moral</h2>
+      <ul>
+        <li>Tanam pohon di rumah atau sekolah</li>
+        <li>Ajak teman untuk peduli lingkungan</li>
+        <li>Jadilah contoh yang baik untuk orang lain</li>
+      </ul>
+      <p>
+        🌍
+        <strong
+          >“Setiap pohon yang kamu tanam, dan setiap makhluk yang kamu lindungi,
+          adalah harapan untuk masa depan.”</strong
+        >
+      </p>
+    </div>
+
+    <div class="nav">
+      <button onclick="prevSlide()">⬅️ Sebelumnya</button>
+      <button onclick="nextSlide()">Selanjutnya ➡️</button>
+    </div>
+
+    <div class="river"></div>
+    <div class="fish">🐟</div>
+
+    <script>
+      const slides = document.querySelectorAll(".slide");
+      let current = 0;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle("active", i === index);
+        });
+      }
+
+      function nextSlide() {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+      }
+
+      function prevSlide() {
+        current = (current - 1 + slides.length) % slides.length;
+        showSlide(current);
+      }
+    </script>
+  </body>
+</html>
